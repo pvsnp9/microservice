@@ -9,14 +9,14 @@ script:
   - docker run tsuyog/client-test npm test -- --coverage
 
 after_success:
-  - docker build -t tsuyog/t-client ./client
+  - docker build -t tsuyog/client ./client
   - docker build -t tsuyog/nginx ./nginx
   - docker build -t tsuyog/api ./server
   - docker build -t tsuyog/worker ./worker
   #login to Docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #take images and push to docker-hub
-  - docker push tsuyog/t-client
+  - docker push tsuyog/client
   - docker push tsuyog/nginx
   - docker push tsuyog/api
   - docker push tsuyog/worker
